@@ -11,10 +11,10 @@ PreWrittenQuotes = ["One, two, three, four, let me hear you scream if you want s
                     "Deal with it"]
 
 EvolveVerb = ['evolved', 'come']
-Sciencething = ['grains of sand', 'atoms', 'brains', 'bodies', 'stars', 'electrons', 'molecules', 'software', 'music', 'songs', 'programs']
-Species = ['dogs', 'cats', 'whales', 'chickens', 'dolphins']
-EvSpecies = ['humans', 'monkeys', choice(Species)]
-CharactersOnly = ['Spock', 'Harry', 'Neo', 'Luke', 'Gandalf', 'Darth Vader']
+Sciencething = ['grains of sand', 'atom', 'brain', 'body', 'star', 'electron', 'molecule', 'software', 'music', 'song', 'program']
+Species = ['dog', 'cat', 'whale', 'chicken', 'dolphin']
+EvSpecies = ['human', 'monkey', choice(Species)]
+CharactersOnly = ['Spock', 'Harry Potter', 'Neo', 'Luke', 'Gandalf', 'Darth Vader']
 Person = [choice(CharactersOnly), 'Carl Sagan', 'Albert Einstein', 'Oprah', 'Steve Jobs', 'Obama', 'Bill Cosby', 'Richard Stallman', 'Linus Torvalds']
 Namecall = ['asshole', 'retard', 'faggot']
 Entire = ['an entire inch', 'the entire world', 'the entire universe', 'the whole galaxy', 'an entire building', 'a whole continent']
@@ -22,27 +22,38 @@ Teleken = ['force', 'death grip', 'mind meld']
 EndSentence = ['!', '?', '?!', '.', '!1!1!!!11!!', '!!111!!11!', '???', '!!!']
 ListRand = [choice(Sciencething), choice(EvSpecies)]
 
-def quote1():
-    #rand1 = randrange (1,11)
-    result = 'If ' + choice(EvSpecies) + ' ' + choice(EvolveVerb) + ' from ' + choice(EvSpecies)
-    result +=' then ' + choice(EvSpecies) + ' must have ' + choice(EvolveVerb) + ' from ' +  choice(EvSpecies)
-    return result
+def pluralize(word):
+    if word[-1] == "y":
+        if word[-2] in ['a','e','i','o','u']:
+            word = word + "s"
+        else:
+            word = word[:-1] + "ies"
+        return word
+    else:
+        return word + 's'
 
-def quote2():
-    #rand1 = randrange(1,11)
-    Lrand2 = [choice(Entire), choice(ListRand)]
-    morl = ['more ', 'less ']
-    result = 'There are ' + choice(morl) + choice(Sciencething) + ' in ' + choice(Lrand2)
-    result +=' than there are ' + choice(ListRand) + ' in ' + choice(Lrand2)
-    return result
+class Choq:
+    def quote1(self):
+        #rand1 = randrange (1,11)
+        result = 'If ' + pluralize(choice(EvSpecies)) + ' ' + choice(EvolveVerb) + ' from ' + pluralize(choice(EvSpecies))
+        result +=' then ' + pluralize(choice(EvSpecies)) + ' must have ' + choice(EvolveVerb) + ' from ' +  pluralize(choice(EvSpecies))
+        return result
+    def quote2(self):
+        #rand1 = randrange(1,11)
+        Lrand2 = [choice(Entire), choice(ListRand)]
+        morl = ['more ', 'less ']
+        result = 'There are ' + choice(morl) + choice(Sciencething) + ' in ' + choice(Lrand2)
+        result +=' than there are ' + choice(ListRand) + ' in ' + choice(Lrand2)
+        return result
+    def quote3(self):
+        result = 'Did you know that if you take ' + str(randrange(1,1000)) + ' ' + choice(ListRand) + ", and put them together, they'd fill up all the space in " + choice(Entire) + '?'
+        return result
+    def quote4(self):
+        result = 'Use the ' + choice(Teleken) + ' ' + choice(CharactersOnly) + choice(EndSentence)
+        return result
 
-def quote3():
-    result = 'Did you know that if you take ' + str(randrange(1,1000)) + ' ' + choice(ListRand) + ", and put them together, they'd fill up all the space in " + choice(Entire) + '?'
-    return result
-def quote4():
-    result = 'Use the ' + choice(Teleken) + ' ' + choice(CharactersOnly) + choice(EndSentence)
-    return result
+xXx = Choq()
 
-ChooseQ = [quote1(), quote2(), quote3(), quote4()]
-
+ChooseQ = [xXx.quote1(), xXx.quote2(), xXx.quote3(), xXx.quote4()]
+print pluralize("chicken")
 print '"' + choice([choice(PreWrittenQuotes)] + [choice(ChooseQ)] * 10 ) + '" -' + choice(Person)
