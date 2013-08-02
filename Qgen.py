@@ -18,7 +18,7 @@ PreWrittenQuotes = ["One, two, three, four, let me hear you scream if you want s
 
 EvolveVerb = ['evolved', 'come']
 Sciencething = ['grains of sand', 'atom', 'brain', 'body', 'star', 'electron', 'molecule', 'software', 'music', 'song', 'program']
-Species = ['dog', 'cat', 'whale', 'chicken', 'dolphin', 'human', 'monkey', '']
+Species = ['dog', 'cat', 'whale', 'chicken', 'dolphin', 'human', 'monkey']
 EvSpecies = ['human', 'monkey', choice(Species), choice(Species)]
 CharactersOnly = ['Spock', 'Harry Potter', 'Neo', 'Luke', 'Gandalf', 'Darth Vader']
 Person = [choice(CharactersOnly), 'Carl Sagan', 'Albert Einstein', 'Oprah', 'Steve Jobs', 'Obama', 'Bill Cosby', 'Richard Stallman', 'Linus Torvalds']
@@ -68,12 +68,12 @@ def genlist():
 def getquote():
     quote = '"' + choice([choice(PreWrittenQuotes)] + [choice(genlist())] * 10 ) + '" -' + choice(Person)
     return quote
-HOST="irc.soupwhale.com"
+HOST=""
 PORT=6667
 NICK="Quotebot"
 IDENT="Quotebot"
 REALNAME="Quotebot"
-CHAN="#soupwhale"
+CHAN="#bots"
 readbuffer=""
 
 s=socket.socket( )
@@ -87,7 +87,6 @@ s.send("PRIVMSG %s :%s\r\n" % (CHAN, 'Just type ".quote" for some historical wis
 
 while 1:
     readbuffer=readbuffer+s.recv(1024)
-#    print readbuffer
     temp=string.split(readbuffer, "\n")
     readbuffer=temp.pop( )
 
@@ -96,7 +95,13 @@ while 1:
         line=string.split(line)
         
         if(":.quote" in line):
-            #s.send("PONG %s\r\n" % line[1])
-            s.send("PRIVMSG %s :%s\r\n" % (CHAN, getquote()))
+            if line[2][0] == "#":
+                target = CHAN
+            else:
+                splstr = line[0].split('!', 1)
+                privnick = splstr[0][1:]
+                target = privnick
+            s.send("PRIVMSG %s :%s\r\n" % (target, getquote()))
+            print line[2][0]
         if(line[0]=="PING"):
             s.send("PONG %s\r\n" % line[1])
