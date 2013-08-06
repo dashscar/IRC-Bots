@@ -1,4 +1,3 @@
-misquoteGen
-===========
-
-A random misquote generator
+IRC Bots
+========
+misquote generator, and more
