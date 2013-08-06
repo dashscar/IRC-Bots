@@ -32,6 +32,7 @@ while 1:
         line=string.split(line)
         print line[3:]
         if(":.eval" in line):
+            reply = ""
             privnick = 0
             if line[2][0] == "#":
                 target = CHAN
@@ -41,10 +42,27 @@ while 1:
                 target = privnick
             if target == privnick:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
-            p = subprocess.Popen(line[4:], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            if "yes" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "of=/dev/sda" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "-rf" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10] 
+            if ":(){" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "*" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "su" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+            p = subprocess.Popen(" ".join(line[4:]), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             for line2 in p.stdout.readlines():
                 reply = line2
-            s.send("PRIVMSG %s :%s\r\n" % (target, reply))
-            print line[2][0]
+                s.send("PRIVMSG %s :%s\r\n" % (target, reply))
+#            print line[2][0]
         if(line[0]=="PING"):
             s.send("PONG %s\r\n" % line[1])
