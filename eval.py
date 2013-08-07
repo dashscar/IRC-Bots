@@ -20,7 +20,7 @@ s.send("JOIN :%s\r\n" % CHAN)
 #s.send("PRIVMSG %s :%s\r\n" % (CHAN, "Hello there, I am Quote Bot"))
 #s.send("PRIVMSG %s :%s\r\n" % (CHAN, 'Just type ".quote" for some historical wisdom!'))
 
-nodont = "Sorry, you can't do that"
+nodont = "5SECURITY BLOCK: 4UNAUTHORIZED COMMAND ATTEMPTED!"
 
 while 1:
     readbuffer=readbuffer+s.recv(1024)
@@ -42,6 +42,24 @@ while 1:
                 target = privnick
             if target == privnick:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+            if "alias" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "chown" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "while" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "/dev/urandom" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "perl" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "kill" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
             if "cmatrix" in line:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
                 line = [[""]*10]
@@ -54,9 +72,9 @@ while 1:
             if "vi" in line:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
                 line = [[""]*10]
-            if "cat" in line:
-                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
-                line = [[""]*10]
+#            if "cat" in line:
+#                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+#                line = [[""]*10]
             if "killall" in line:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
                 line = [[""]*10]
