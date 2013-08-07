@@ -42,6 +42,30 @@ while 1:
                 target = privnick
             if target == privnick:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+            if "cmatrix" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "nano" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "vim" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "vi" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "cat" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "killall" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "eval.py" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
+            if "-9" in line:
+                s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
+                line = [[""]*10]
             if "yes" in line:
                 s.send("PRIVMSG %s :%s\r\n" % (target, nodont))
                 line = [[""]*10]
