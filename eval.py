@@ -3,12 +3,12 @@ import socket
 import string
 import time
 import subprocess
-HOST="irc.soupwhale.com"
+HOST="irc.bagelbox.org"
 PORT=6667
 NICK="eval"
 IDENT="eval"
 REALNAME="eval"
-CHAN="#soupwhale"
+CHAN="#bagel"
 readbuffer=""
 
 s=socket.socket( )
