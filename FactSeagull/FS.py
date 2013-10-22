@@ -39,6 +39,19 @@ s.send("JOIN :%s\r\n" % CHAN)
 s.send("PRIVMSG %s :%s\r\n" % (CHAN, "Hello there, I am Fact Seagull"))
 s.send("PRIVMSG %s :%s\r\n" % (CHAN, 'Just type ".fact" for a fact!'))
 
+def checknsend(line, check, message)
+    if(check in line):
+        if line[2][0] == "#":
+            target = CHAN
+        else:
+            splstr = line[0].split('!', 1)
+            privnick = splstr[0][1:]
+            target = privnick
+        s.send("PRIVMSG %s :%s\r\n" % (target, message)
+        print line[2][0]
+    if check = ".add":
+        with open('fact', 'a') as file:
+            file.write(line [3:])
 while 1:
     readbuffer=readbuffer+s.recv(1024)
     temp=string.split(readbuffer, "\n")
@@ -48,35 +61,9 @@ while 1:
         line=string.rstrip(line)
         line=string.split(line)
         
-        if(":.mean" in line):
-            if line[2][0] == "#":
-                target = CHAN
-            else:
-                splstr = line[0].split('!', 1)
-                privnick = splstr[0][1:]
-                target = privnick
-            s.send("PRIVMSG %s :%s\r\n" % (target, getquote('feel')))
-            print line[2][0]
-        if(":.fact" in line):
-            if line[2][0] == "#":
-                target = CHAN
-            else:
-                splstr = line[0].split('!', 1)
-                privnick = splstr[0][1:]
-                target = privnick
-            s.send("PRIVMSG %s :%s\r\n" % (target, getquote('fact')))
-            print line
-        if(":.shit" in line):
-            if line[2][0] == "#":
-                target = CHAN
-            else:
-                splstr = line[0].split('!', 1)
-                privnick = splstr[0][1:]
-                target = privnick
-            s.send("PRIVMSG %s :%s\r\n" % (target, 'Traceback (most recent call last)'))
-            s.send("PRIVMSG %s :%s\r\n" % (target, '  File "Fact.py", line 71, in <module>'))
-            s.send("PRIVMSG %s :%s\r\n" % (target, '    if not line[4]:'))
-            s.send("PRIVMSG %s :%s\r\n" % (target, 'IndexError: list index out of range'))
-            print line[4]
+        checknsend(line, ":.mean", getquote('feel'))
+        checknsend(line, ":.fact", getquote('fact'))
+        checknsend(line, ".add", "Fact added")
+        
         if(line[0]=="PING"):
             s.send("PONG %s\r\n" % line[1])
