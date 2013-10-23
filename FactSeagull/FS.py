@@ -47,11 +47,11 @@ def checknsend(line, check, message)
             splstr = line[0].split('!', 1)
             privnick = splstr[0][1:]
             target = privnick
-        s.send("PRIVMSG %s :%s\r\n" % (target, message)
+        s.send("PRIVMSG %s :%s\r\n" % (target, message))
         print line[2][0]
-    if check = ".add":
-        with open('fact', 'a') as file:
-            file.write(line [3:])
+    if check == ".add":
+        with open('Facts.txt', 'a') as file:
+            file.write(' '.join(line[4:]))
 while 1:
     readbuffer=readbuffer+s.recv(1024)
     temp=string.split(readbuffer, "\n")
@@ -63,7 +63,7 @@ while 1:
         
         checknsend(line, ":.mean", getquote('feel'))
         checknsend(line, ":.fact", getquote('fact'))
-        checknsend(line, ".add", "Fact added")
+        checknsend(line, ":.add", "Fact added")
         
         if(line[0]=="PING"):
             s.send("PONG %s\r\n" % line[1])
