@@ -68,12 +68,12 @@ def genlist():
 def getquote():
     quote = '"' + choice([choice(PreWrittenQuotes)] + [choice(genlist())] * 10 ) + '" -' + choice(Person)
     return quote
-HOST="irc.bagelbox.org"
+HOST="server"
 PORT=6667
 NICK="Quotebot"
 IDENT="Quotebot"
 REALNAME="Quotebot"
-CHAN="#bagel"
+CHAN="#channel"
 readbuffer=""
 
 s=socket.socket( )
