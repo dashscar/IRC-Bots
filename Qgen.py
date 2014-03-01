@@ -13,7 +13,7 @@ PreWrittenQuotes = ["One, two, three, four, let me hear you scream if you want s
         'Has anyone really been so far as to go look as decided for?',
         'Do you even lift?',
         "They don't think it be like it is, but it do",
-        "Deal with it"
+        "Deal with it",
         "Give her the dick"]
 
 EvolveVerb = ['evolved', 'come']
