@@ -13,12 +13,12 @@ def yourmom(line):
     ret = ' '.join(line[3:])
     return ret
 
-HOST="irc.rizon.net"
+HOST="server"
 PORT=6667
 NICK="yourmom_bot"
 IDENT="Quotebot"
 REALNAME="Quotebot"
-CHAN="#/g/punk"
+CHAN="#channelhere"
 readbuffer=""
 
 s=socket.socket( )
