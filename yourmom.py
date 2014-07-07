@@ -5,7 +5,6 @@ import time
 from random import choice
 from random import randrange
 
-#[':SpryX!~Sprylitol@Rizon-895EB333.lightspeed.irvnca.sbcglobal.net', 'PRIVMSG', '#/g/punk', ':this', 'is', 'test']
 
 def yourmom(line):
     x = (line.index("is")) - 1
